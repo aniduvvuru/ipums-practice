@@ -38,7 +38,6 @@ for (j in c(1L, 2L, 3L))
   set(dt2, j = j, value = -dt2[[j]])
 for (j in c(1L, 2L, 3L))
   set(dt2, j = j, value = paste0(-dt2[[j]], '!!'))
-dt
 dt2
 
 # Shift to lead/lag vectors and lists
@@ -47,3 +46,9 @@ dt[, mpg_lag1 := shift(mpg, 1)]
 dt[, mpg_forward1 := shift(mpg, 1, type = 'lead')]
 head(dt)
 
+# Find out what is most responsible for low mpg among cylinder, HP, and weight
+dt = data.table(mtcars)[, .(mpg, cyl, hp, wt)]
+model_data = dt[,lapply(.SD, mean), by=mpg, .SDcols = c('cyl', 'hp', 'wt')][order(-mpg)]
+model = lm(mpg ~ cyl + hp + wt, data=model_data)
+summary(model)
+## Conclusion: It seems that weight is primarily responsible for reduced mileage per gallon
