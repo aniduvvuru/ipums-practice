@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ipums-practice
 
 Written in the terminal from Rstudio.
@@ -24,3 +25,6 @@ ctrl + D = delete line
 alt + shift + left/right = select rest of line in that direction
 ctrl + shift + A  = format all code
 ctrl + shift + M = Magrittr's Pipe
+=======
+# ipums-practice
+>>>>>>> 76f19b1d595d2e57fc2ef6677a6cab37a745ec87
